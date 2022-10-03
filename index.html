@@ -43,7 +43,7 @@
   <header id="header">
     <div class="container">
 
-      <h1><a href="index.html">Sinan <span style="color: #2eda64;">S</span></a></h1>
+      <h1><a href="index.html">Sinan <span style="color: #0effe7;">S</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
       <h2>I'm a <span>Flutter Developer</span> </h2>
@@ -502,24 +502,26 @@
       <form id="submit-form" action="" method="" role="form" class="php-email-form mt-4">
         <div class="row">
           <div class="col-md-6 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" onkeyup="nameCheck()" onclick="nameCheck()" required>
+            <p id="error-name" style="color: red;" ></p>
+            <p id="error-number" style="color: red;" ></p>
           </div>
           <div class="col-md-6 form-group mt-3 mt-md-0">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+            <input type="email" class="form-control" name="mail" id="mail" placeholder="Your Email" onkeyup="emailCheck()" onclick="emailCheck()" required>
+            <p id="error-mail" style="color: red;"></p>
           </div>
         </div>
         <div class="form-group mt-3">
-          <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+          <input type="text" class="form-control" name="sub" id="sub" placeholder="Subject" onkeyup="emptyCheckSubject()" onclick="emptyCheckSubject()" required>
+          <p id="error-sub" style="color: red;"></p>
         </div>
         <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+          <textarea class="form-control" name="messages" rows="5" placeholder="Message" id="messages" onkeyup="emptyCheckMessage()" onclick="emptyCheckMessage()" required></textarea>
+          <p id="errormessage" style="color: red;"></p>
         </div>
-        <div class="my-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your message has been sent. Thank you!</div>
-        </div>
-        <div class="text-center"><button type="submit">Send Message</button></div>
+        
+        <div class="text-center"><button type="submit" id="submit-form">Send Message</button></div>
+        
       </form>
 
     </div>
@@ -529,23 +531,7 @@
 
   <!-- Vendor JS Files -->
   <script>
-    $("#submit-form").submit((e)=>{
-        e.preventDefault()
-        $.ajax({
-            url:"https://script.google.com/macros/s/AKfycbxv_u9mt2ahwf3KD_wZMr3jQESIyupmZBVfD0JOZ1lDCwkv_FUrCkWJLOqV2zMWUFI0/exec",
-            data:$("#submit-form").serialize(),
-            method:"post",
-            success:function (response){
-                alert("Form submitted successfully")
-                window.location.reload()
-                // window.location.href="https://google.com"
-            },
-            error:function (err){
-                alert("Something Error")
-
-            }
-        })
-    })
+   
 </script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -553,10 +539,11 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="validate.js" ></script>
 
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script defer src="assets/js/main.js"></script>
 
 </body>
 
